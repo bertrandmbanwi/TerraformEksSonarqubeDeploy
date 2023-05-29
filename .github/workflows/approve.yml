@@ -1,0 +1,14 @@
+name: Auto approve
+on: 
+  pull_request_target:
+  workflow_dispatch:
+
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto approve
+        uses: hmarr/auto-approve-action@v2.0.0
+        if: github.actor == 'bet-renovate-bot'
+        with:
+          github-token: "${{ secrets.APP_PRIVATE_KEY }}"
